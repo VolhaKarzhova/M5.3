@@ -36,7 +36,10 @@ public class NewLetterPage extends AbstractPage {
 
     public MailStatusPage sendMail() {
         driver.findElement(SEND_BUTTON_LOCATOR).click();
-        waitForElementVisible(MailStatusPage.MAIL_ADDRESSEE_LOCATOR);
+        try {
+            waitForElementVisible(MailStatusPage.MAIL_ADDRESSEE_LOCATOR);
+        } catch (Exception e) {
+        }
         return new MailStatusPage();
     }
 
@@ -55,5 +58,9 @@ public class NewLetterPage extends AbstractPage {
     public String getInvalidAddresseeAlertMessage() {
         waitForAlertDisplayed();
         return driver.switchTo().alert().getText();
+    }
+
+    public void handleAlertMessage() {
+        driver.switchTo().alert().accept();
     }
 }
