@@ -36,6 +36,7 @@ public class NewLetterPage extends AbstractPage {
 
     public MailStatusPage sendMail() {
         driver.findElement(SEND_BUTTON_LOCATOR).click();
+        waitForElementVisible(MailStatusPage.MAIL_ADDRESSEE_LOCATOR);
         return new MailStatusPage();
     }
 

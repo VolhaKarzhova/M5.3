@@ -1,42 +1,26 @@
 package mailRu.utils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import mailRu.business_objects.letter.Letter;
-import mailRu.business_objects.letter.LetterBuilder;
-import mailRu.config.GlobalParameters;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.Type;
 
 public class JsonUtils {
-    private final static String baseFile = "letterList.json";
 
-    public static void toJSON(List<Letter> letterList) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(new File(baseFile), letterList);
-        System.out.println("json created!");
+    private Letter[] list;
+
+    private Type itemsArrType = new TypeToken<Letter[]>() {
+    }.getType();
+
+    public Letter[] crateTestData(String jsonFile) {
+        list = new Gson().fromJson(jsonFile, itemsArrType);
+        return list;
     }
 
-//    public static Letter toJavaObject() throws IOException {
-//        ObjectMapper mapper = new ObjectMapper();
-//        return mapper.readValue(new File(baseFile), Letter.class);
+//    public static void main(String[] args) {
+//        JsonUtils jsonUtils = new JsonUtils();
+//        jsonUtils.crateTestData("[{\"addressee\":\"volhakarzhova@mail.ru\", \"subject\":\"Subject464647\", \"body\":\"wetyjiolkmn876re3\"},{\"addressee\":\"olga1584624@mail.ru\", \"subject\":\"5476576787\", \"body\":\"467589p0dfhki;lpo\"}]");
+//
 //    }
-
-    public static void main(String[] args) throws IOException {
-        Letter letterWithAllFieldsFilled = new LetterBuilder(GlobalParameters.USER_LOGIN+GlobalParameters.USER_DOMAIN)
-                .setSubject(RandomUtils.getLetterSubject()).setBody(RandomUtils.getLetterBody()).build();
-        Letter blankLetter = new LetterBuilder(GlobalParameters.USER_LOGIN+GlobalParameters.USER_DOMAIN)
-                .setSubject(GlobalParameters.EMPTY_STRING).setBody(GlobalParameters.EMPTY_STRING).build();
-        Letter letterWithInvalidAddressee = new LetterBuilder(RandomUtils.getInvalidAddressee())
-                .setSubject(RandomUtils.getLetterSubject()).setBody(RandomUtils.getLetterBody()).build();
-        List<Letter> letters = new ArrayList<>();
-            letters.add(letterWithAllFieldsFilled);
-            letters.add(blankLetter);
-            letters.add(letterWithInvalidAddressee);
-
-        JsonUtils.toJSON(letters);
-    }
 }
-

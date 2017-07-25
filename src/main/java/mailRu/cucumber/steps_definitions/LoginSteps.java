@@ -15,7 +15,7 @@ public class LoginSteps {
     private AuthorizationService authorizationService = new AuthorizationService();
     private LoginPage loginPage = new LoginPage();
 
-    @Given("^User navigates to MailRu Home Page$")
+    @Given("^User (?:navigates to|opens) MailRu Home Page$")
     public void user_navigates_to_malRu_home_page() {
         loginPage.open();
     }

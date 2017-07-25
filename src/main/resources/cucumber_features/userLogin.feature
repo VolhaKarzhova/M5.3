@@ -26,4 +26,3 @@ Feature: LogIn Action
   Scenario: Successful LogOut
     When    User logOut from the mailbox
     Then    MailRu home page is displayed
-

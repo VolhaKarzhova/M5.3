@@ -11,7 +11,11 @@ public class Letter {
     @JsonProperty("Body")
     private String body;
 
-    public Letter(){}
+    public Letter(String addressee, String subject, String body){
+        this.addressee = addressee;
+        this.subject = subject;
+        this.body = body;
+    }
 
     public Letter(LetterBuilder builder) {
         this.addressee = builder.addressee;

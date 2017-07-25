@@ -6,7 +6,7 @@ import mailRu.webdriver.WebDriverSingleton;
 import org.testng.annotations.AfterClass;
 
 @CucumberOptions(strict = true, plugin = {"json:target/cucumber-report.json",
-        "html:target/cucumber-report"}, tags = {"@draftLetterCreation"}, features = "src/main/resources/cucumber_features", glue = {
+        "html:target/cucumber-report"}, features = "src/main/resources/cucumber_features/sendLetter.feature", glue = {
         "mailRu.cucumber.steps_definitions"})
 
 public class CucumberRunner extends AbstractTestNGCucumberTests {

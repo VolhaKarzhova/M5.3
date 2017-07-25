@@ -1,6 +1,7 @@
 package mailRu.pages;
 
 
+import cucumber.runtime.CucumberException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
@@ -37,8 +38,7 @@ public class MailListPage extends AbstractPage {
             waitForElementVisible(By.xpath(String.format(MAIL_BY_SUBJECT_LOCATOR, subject)));
             driver.findElement(By.xpath(String.format(MAIL_BY_SUBJECT_LOCATOR, subject))).isDisplayed();
             return true;
-        } catch (TimeoutException exception) {
-        } catch (NoSuchElementException exception) {
+        } catch (Exception exception) {
         }
         return false;
     }
