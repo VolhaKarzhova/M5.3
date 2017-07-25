@@ -16,6 +16,9 @@ public class Letter {
         this.subject = subject;
         this.body = body;
     }
+    public Letter(String subject){
+        this.subject = subject;
+    }
 
     public Letter(LetterBuilder builder) {
         this.addressee = builder.addressee;

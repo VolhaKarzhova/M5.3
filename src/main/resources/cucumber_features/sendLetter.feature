@@ -16,4 +16,6 @@ Feature: Send Letter Test
   [{"addressee":"volhakarzhova@mail.ru", "subject":"Subject464647", "body":"wetyjiolkmn876re3"},{"addressee":"olga1584624@gmail.com", "subject":"5476576787", "body":"467589p0dfhkilpo"}]
     """
     Then    Letter with 'Subject' "Subject464647" is visible in the sent folder
+    And     Letter with 'Subject' "5476576787" is visible in the sent folder
     And     User logOut from the mailbox
+    

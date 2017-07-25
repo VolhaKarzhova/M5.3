@@ -59,6 +59,11 @@ public class MailService extends AbstractPage {
         return isLetterVisibleInFolder(letter);
     }
 
+    public boolean isLetterVisibleInSentFolder(Letter letter) {
+        new LeftMenuPage().openSentFolder();
+        return isLetterVisibleInFolder(letter);
+    }
+
     public boolean isLetterVisibleInTrashFolder(Letter letter) {
         new LeftMenuPage().openDeletedFolder();
         return isLetterVisibleInFolder(letter);
