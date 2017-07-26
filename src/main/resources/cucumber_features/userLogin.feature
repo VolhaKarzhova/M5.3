@@ -22,6 +22,7 @@ Feature: LogIn Action
   Scenario: Successful Login with Valid Credentials
     When    User enters "volhakarzhova@mail.ru" and "1584624Qwe" and click submit button
     Then    Check user is authorized successfully
+    And     User logOut from the mailbox
 
   Scenario: Successful LogOut
     When    User enters "volhakarzhova@mail.ru" and "1584624Qwe" and click submit button

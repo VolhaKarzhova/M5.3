@@ -34,13 +34,13 @@ public class MailListPage extends AbstractPage {
     }
 
     public boolean isLetterVisible(String subject) {
+        refreshPage();
         try {
             waitForElementVisible(By.xpath(String.format(MAIL_BY_SUBJECT_LOCATOR, subject)));
-            driver.findElement(By.xpath(String.format(MAIL_BY_SUBJECT_LOCATOR, subject))).isDisplayed();
-            return true;
+            return driver.findElement(By.xpath(String.format(MAIL_BY_SUBJECT_LOCATOR, subject))).isDisplayed();
         } catch (Exception exception) {
+            return false;
         }
-        return false;
     }
 
     public MailListPage clickLetterCheckbox(String subject) {

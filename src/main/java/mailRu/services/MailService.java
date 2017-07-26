@@ -35,6 +35,13 @@ public class MailService extends AbstractPage {
         new MailListPage().deleteLetter(letter.getSubject());
     }
 
+    public void permanentLetterDelete(Letter letter) {
+        new LeftMenuPage().openDeletedFolder().deleteLetter(letter.getSubject());
+    }
+    public void deleteDraftLetter(Letter letter) {
+        new LeftMenuPage().openDraftFolder().deleteLetter(letter.getSubject());
+    }
+
     public void confirmSendingLetterOnAlert() {
         new NewLetterPage().confirmSendingLetterOnAlert();
     }

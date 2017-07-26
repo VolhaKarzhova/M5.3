@@ -1,22 +1,18 @@
 package mailRu.business_objects.letter;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Letter {
 
-    @JsonProperty("Addressee")
     private String addressee;
-    @JsonProperty("Subject")
     private String subject;
-    @JsonProperty("Body")
     private String body;
 
-    public Letter(String addressee, String subject, String body){
+    public Letter(String addressee, String subject, String body) {
         this.addressee = addressee;
         this.subject = subject;
         this.body = body;
     }
-    public Letter(String subject){
+
+    public Letter(String subject) {
         this.subject = subject;
     }
 

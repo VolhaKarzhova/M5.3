@@ -8,11 +8,9 @@ Feature: Draft Letter Test
   Background:
     Given   User opens MailRu Home Page
     And     User enters "volhakarzhova@mail.ru" and "1584624Qwe" and click submit button
-    And     Check user is authorized successfully
 
   Scenario Outline: User is able to save draft letter
-    When    User fills 'Addressee' with "<addressee>", fill 'Subject' with "<subject>", fill 'Body' with "<body>"
-    And     Clicks 'Save As Draft' button
+    When    User saves letter as draft with "<addressee>", "<subject>", "<body>"
     Then    Letter with 'Subject' "<subject>" is present in draft folder
     And     User logOut from the mailbox
     Examples:
@@ -22,14 +20,12 @@ Feature: Draft Letter Test
       | olga158462@gmail.com    | empty Body |           |
 
   Scenario:  User is able to delete draft letter
-    And      User goes to the draft folder
     When     User deletes letter with 'Subject' "test08"
     Then     Letter with 'Subject' "test08" isn't visible in draft folder
     And      Letter with 'Subject' "test08" is visible in trash folder
     And      User logOut from the mailbox
 
   Scenario:  User is able to delete draft letter permanently
-    And      User moves to the trash folder
-    When     User deletes letter with 'Subject' "test08"
+    When     User deletes letter with 'Subject' "test08" permanently
     Then     Letter with 'Subject' "test08" isn't visible in trash folder
     And      User logOut from the mailbox

@@ -6,8 +6,8 @@ import mailRu.webdriver.WebDriverSingleton;
 import org.testng.annotations.AfterClass;
 
 @CucumberOptions(strict = true, plugin = {"json:target/cucumber-report.json",
-        "html:target/cucumber-report"}, tags = "@NegativeTest", features = "src/main/resources/cucumber_features/", glue = {
-        "mailRu.cucumber.steps_definitions"})
+        "html:target/cucumber-report"}, features = "src/main/resources/cucumber_features/userLogin.feature", glue = {
+        "mailRu.cucumber.steps"})
 
 public class CucumberRunner extends AbstractTestNGCucumberTests {
 

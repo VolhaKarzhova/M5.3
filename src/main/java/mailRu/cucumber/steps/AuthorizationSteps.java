@@ -1,45 +1,42 @@
-package mailRu.cucumber.steps_definitions;
+package mailRu.cucumber.steps;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import mailRu.business_objects.user.User;
-import mailRu.pages.HeaderMenuPage;
-import mailRu.pages.LoginPage;
 import mailRu.services.AuthorizationService;
 import org.testng.Assert;
 
 import static mailRu.tests.LoginTest.VALID_USER_ACCOUNT;
 
-public class LoginSteps {
+public class AuthorizationSteps {
 
     private AuthorizationService authorizationService = new AuthorizationService();
-    private LoginPage loginPage = new LoginPage();
 
     @Given("^User (?:navigates to|opens) MailRu Home Page$")
     public void user_navigates_to_malRu_home_page() {
-        loginPage.open();
+        authorizationService.openHomePage();
     }
 
-    @When("^User enters \"([^\"]*)\" and \"([^\"]*)\" and click submit button$")
+    @And("^User enters? \"([^\"]*)\" and \"([^\"]*)\" and click submit button$")
     public void do_login_to_mailbox(String login, String password) {
         authorizationService.doLogin(new User(login, password));
     }
 
     @Then("^Check user is authorized successfully$")
     public void is_authorization_successful() {
-        boolean isUserLoginExpected = authorizationService.isUserLoginAfterAuthorizationExpected(VALID_USER_ACCOUNT);
-        Assert.assertTrue(isUserLoginExpected, "Login wasn't successful");
+        Assert.assertTrue(authorizationService.isUserLoginAfterAuthorizationExpected(VALID_USER_ACCOUNT),
+                "Login wasn't successful");
     }
 
-    @When("^User logOut from the mailbox$")
+    @And("^User logOut from the mailbox$")
     public void do_logOut() {
-        new HeaderMenuPage().logout();
+        authorizationService.doLogout();
     }
 
     @Then("^MailRu home page is displayed$")
     public void is_logout_successful() {
-        Assert.assertTrue(loginPage.isLoginInputPresent(), "User didn't logOut from MailBox");
+        Assert.assertTrue(authorizationService.isLogOutSuccessfull(), "User didn't logOut from MailBox");
     }
 
     @Then("^\"([^\"]*)\" message is displayed$")

@@ -10,6 +10,10 @@ import mailRu.pages.LoginPage;
 
 public class AuthorizationService extends AbstractPage {
 
+    public void openHomePage() {
+        new LoginPage().open();
+    }
+
     public void doLogin(User user) {
         try {
             new LoginPage().login(user.getLoginPart(), user.getPassword());
@@ -19,11 +23,11 @@ public class AuthorizationService extends AbstractPage {
 
     public boolean isUserLoginAfterAuthorizationExpected(User user) {
         AbstractUser decoratedUser = new UserLoginDecorator(user);
-        return (new HeaderMenuPage().getUserLogin().equalsIgnoreCase(decoratedUser.getLoginPart()));
+        return new HeaderMenuPage().getUserLogin().equalsIgnoreCase(decoratedUser.getLoginPart());
     }
 
     public boolean isInvalidCredentialsErrorMessageExpected(String expectedErrorMessage) {
-        return (new LoginPage().getErrorMessage().equalsIgnoreCase(expectedErrorMessage));
+        return new LoginPage().getErrorMessage().equalsIgnoreCase(expectedErrorMessage);
     }
 
     public void doLogout() {
@@ -31,5 +35,9 @@ public class AuthorizationService extends AbstractPage {
         if (headerMenuPage.isLogOutButtonVisible()) {
             headerMenuPage.logout();
         }
+    }
+
+    public boolean isLogOutSuccessfull() {
+        return new LoginPage().isLoginInputPresent();
     }
 }

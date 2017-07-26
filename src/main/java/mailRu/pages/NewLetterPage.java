@@ -13,7 +13,6 @@ public class NewLetterPage extends AbstractPage {
     private static final By ALERT_EMPTY_BODY_LOCATOR = By.xpath("//div[contains(@class,'empty')]//div[@class='popup__desc']");
     private static final By ALERT_CONFIRM_BUTTON_LOCATOR = By.xpath("//div[@class='is-compose-empty_in']//button[contains(@class, 'confirm-ok')]");
     private static final By SAVED_AS_DRAFT_MESSAGE_LOCATOR = By.xpath("//div[@class='b-toolbar__message']/a");
-    private static final By DELETE_INVALID_ADDRESSEE_FROM_FIELD = By. xpath("//span[@data-text]//i[contains(@class,'remove-label')]");
 
     public NewLetterPage fillAllLetterInputs(String addressee, String subject, String body) {
         fillAddresseeInput(addressee);
@@ -24,7 +23,7 @@ public class NewLetterPage extends AbstractPage {
         return this;
     }
 
-    public NewLetterPage fillAddresseeInput(String addressee){
+    public NewLetterPage fillAddresseeInput(String addressee) {
         driver.findElement(ADDRESSEE_INPUT_LOCATOR).sendKeys(addressee);
         return this;
     }
@@ -59,15 +58,5 @@ public class NewLetterPage extends AbstractPage {
     public String getInvalidAddresseeAlertMessage() {
         waitForAlertDisplayed();
         return driver.switchTo().alert().getText();
-    }
-
-    public void handleAlertMessage() {
-        driver.findElement(DELETE_INVALID_ADDRESSEE_FROM_FIELD).click();
-        driver.switchTo().alert().accept();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
