@@ -1,19 +1,14 @@
 package mailRu.cucumber.steps_definitions;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import mailRu.pages.HeaderMenuPage;
+import mailRu.pages.LeftMenuPage;
 import mailRu.pages.NewLetterPage;
 
 public class ButtonClickSteps {
 
-    NewLetterPage newLetterPage = new NewLetterPage();
-
-    @When("^User clicks 'New Letter' button$")
-    public void user_clicks_new_letter_button() {
-        new HeaderMenuPage().clickNewLetterButton();
-    }
+    private NewLetterPage newLetterPage = new NewLetterPage();
 
     @And("^Clicks? 'Save As Draft' button$")
     public void save_letter_as_draft() {
@@ -22,14 +17,11 @@ public class ButtonClickSteps {
 
     @And("^User clicks 'Send' button$")
     public void user_clicks_send_button() {
-        try {
-            newLetterPage.sendMail();
-        } catch (Exception e) {
-        }
+        newLetterPage.sendMail();
     }
 
     @And("^User confirms alert message$")
-    public void userConfirmsAlertMessage() {
+    public void user_confirms_alert_message() {
         newLetterPage.handleAlertMessage();
     }
 }

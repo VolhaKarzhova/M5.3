@@ -14,4 +14,9 @@ public class MoveToFolderSteps {
     public void user_goes_to_draft_folder() {
         new LeftMenuPage().openDraftFolder();
     }
+
+    @When("^User (?:moves to|goes to) the inbox folder$")
+    public void user_goes_to_inbox_folder() {
+        new LeftMenuPage().openInboxFolder();
+    }
 }

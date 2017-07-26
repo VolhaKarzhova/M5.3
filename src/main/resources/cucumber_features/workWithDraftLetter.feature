@@ -11,8 +11,7 @@ Feature: Draft Letter Test
     And     Check user is authorized successfully
 
   Scenario Outline: User is able to save draft letter
-    When    User clicks 'New Letter' button
-    And     Fill 'Addressee' with "<addressee>", fill 'Subject' with "<subject>", fill 'Body' with "<body>"
+    When    User fills 'Addressee' with "<addressee>", fill 'Subject' with "<subject>", fill 'Body' with "<body>"
     And     Clicks 'Save As Draft' button
     Then    Letter with 'Subject' "<subject>" is present in draft folder
     And     User logOut from the mailbox

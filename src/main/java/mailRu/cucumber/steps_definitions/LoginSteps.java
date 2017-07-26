@@ -4,6 +4,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import mailRu.business_objects.user.User;
+import mailRu.pages.HeaderMenuPage;
 import mailRu.pages.LoginPage;
 import mailRu.services.AuthorizationService;
 import org.testng.Assert;
@@ -33,7 +34,7 @@ public class LoginSteps {
 
     @When("^User logOut from the mailbox$")
     public void do_logOut() {
-        authorizationService.doLogout();
+        new HeaderMenuPage().logout();
     }
 
     @Then("^MailRu home page is displayed$")

@@ -6,6 +6,7 @@ Feature: LogIn Action
   Background:
     Given User navigates to MailRu Home Page
 
+  @NegativeTest
   Scenario Outline: Login with Invalid Credentials
     When    User enters "<Login>" and "<Password>" and click submit button
     Then    "<Alert>" message is displayed
@@ -18,11 +19,11 @@ Feature: LogIn Action
       | volhakarzhova |            | Введите пароль          |
       |               |            | Введите имя ящика       |
 
-  @Successful_login
   Scenario: Successful Login with Valid Credentials
     When    User enters "volhakarzhova@mail.ru" and "1584624Qwe" and click submit button
     Then    Check user is authorized successfully
 
   Scenario: Successful LogOut
-    When    User logOut from the mailbox
+    When    User enters "volhakarzhova@mail.ru" and "1584624Qwe" and click submit button
+    And     User logOut from the mailbox
     Then    MailRu home page is displayed
